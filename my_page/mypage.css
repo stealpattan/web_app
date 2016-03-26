@@ -24,8 +24,13 @@ body {
 #go_comment_button{
   border-left: 100px;
   border-right: 100px;
+  padding: 20px;
   margin: 0 auto;
   text-align: center;
+}
+
+.main_contents{
+  float: center;
 }
 /*ここまで*/
 
