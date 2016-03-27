@@ -6,6 +6,20 @@ body {
   color: white;
 }
 
+/*追加した部分です*/
+#content_check{
+  font-size: 23px;
+}
+#content_check .content{
+  background-color: white;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: #708090;
+  border-radius: 5px;
+  text-shadow: none;
+}
+/*ここまで*/
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
