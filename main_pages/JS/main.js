@@ -38,7 +38,7 @@ function obj_set(px, py){
   element1.style.width = "300px";
   element1.style.height = "150px";
   element1.style.border = "3px solid #7fffd4";
-  element1.style.backgroundColor = "#7fff00";
+  element1.style.backgroundColor = "white";
   element1.style.left = (posx) + "px";
   element1.style.top = (posy) + "px";
   // setInterval(function(){
@@ -55,7 +55,7 @@ function obj_set(px, py){
   element2.style.width = "300px";
   element2.style.height = "150px";
   element2.style.border = "3px solid #7fffd4";
-  element2.style.backgroundColor = "#7fff00";
+  element2.style.backgroundColor = "white";
   element2.style.left = (posx) + "px";
   element2.style.top = (posy) + "px";
 
@@ -67,7 +67,7 @@ function obj_set(px, py){
   element3.style.width = "300px";
   element3.style.height = "150px";
   element3.style.border = "3px solid #7fffd4";
-  element3.style.backgroundColor = "#7fff00";
+  element3.style.backgroundColor = "white";
   element3.style.left = (posx) + "px";
   element3.style.top = (posy) + "px";
 
@@ -79,7 +79,7 @@ function obj_set(px, py){
   element4.style.width = "300px";
   element4.style.height = "150px";
   element4.style.border = "3px solid #7fffd4";
-  element4.style.backgroundColor = "#7fff00";
+  element4.style.backgroundColor = "white";
   element4.style.left = (posx) + "px";
   element4.style.top = (posy) + "px";
 
@@ -91,7 +91,7 @@ function obj_set(px, py){
   element5.style.width = "300px";
   element5.style.height = "150px";
   element5.style.border = "3px solid #7fffd4";
-  element5.style.backgroundColor = "#7fff00";
+  element5.style.backgroundColor = "white";
   element5.style.left = (posx) + "px";
   element5.style.top = (posy) + "px";
 }
