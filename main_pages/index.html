@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang = "ja">
 	<head>
 		<meta charset="utf-8">
@@ -62,33 +63,72 @@
 		    </div>
 		<!-- メインコンテンツ。ここにコメントを表示したり、動き（アニメーション）を与えていきます -->
 
-		<div class="container">
-			<div class="jumbotron" id = "content">
-	      <div class="row">
-	        <h3 style = "color: #708090;">Submit your mind!</h3>
-	      </div>
-	      <div class="row">
-	        <div class="">
-	          <div class="widget-area no-padding blank">
-	            <div class="status-upload">
-	              <span id = "ball"></span>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-
-		<div class="none">
-			<p id = "x"></p>
-			<p id = "y"></p>
+		<div id="main_content">
+			<span>コメントはここに表示されることになっています</span>
 		</div>
 
-		<!-- Javascript動作テスト用ボタン -->
-		<form class="java_button" action="index.html"
-					method="">
-			<input type="button" onClick = "ball_move()" name="ball_button" value="動け！">
-		</form>
+		<div id="obj1">
+			<span>hogehoge</span>
+			<p>
+				コメントハコチラニタダシクヒョウジサレルコトトナッテイマス。ゴリョウショウクダサイ
+			</p>
+		</div>
+		<div id="obj2">
+			<span></span>
+			<p>
+				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+			</p>
+		</div>
 
+		<div id="obj3">
+			<span></span>
+			<p>
+				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+			</p>
+		</div>
+
+		<div id="obj4">
+			<span></span>
+			<p>
+				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+			</p>
+		</div>
+
+		<div id="obj5">
+			<span></span>
+			<p>
+				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+			</p>
+		</div>
+
+		<script type="text/javascript">
+			var pos_x,pos_y;
+			function get_mainContent_position(){
+				// メインコンテンツを表示する場所を取得しています
+				var w_x = window.innerWidth;
+				var w_y = window.innerHeight;
+				pos_x = (w_x / 2) - 200;
+				pos_y = ((w_y - 100) / 3) + 100;
+				// メインコンテンツの位置取得終了
+				var main_content = document.getElementById("main_content");
+				document.body.appendChild(main_content);
+				main_content.style.position = "fixed";
+				main_content.style.width = "400px";
+				main_content.style.height = "200px";
+				main_content.style.border = "3px solid #7fffd4";
+				main_content.style.backgroundColor = "white";
+				main_content.style.left = (pos_x) + "px";
+				main_content.style.top = (pos_y) + "px";
+
+				obj_set(pos_x, pos_y);
+			}
+		</script>
+
+		<form class="none" action="index.html" method="post">
+			<input type="button" name="name" value="button_move" onClick = "onClick_button()" id = "ashamed_button"><br>
+			<input type="button" name="name" value="別のボタン" onClick="obj_move()"><br>
+			<input type="button" name="name" value="さらに別のボタん" onClick = "obj_set()"><br>
+			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
+		</form>
 	</body>
 </html>
