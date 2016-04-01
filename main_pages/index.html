@@ -10,7 +10,7 @@
 	    <meta name="author" content="">
 	    <link rel="icon" href="../../favicon.ico">
 
-	    <title>Comment!</title>
+	    <title>Share your Error!!</title>
 
 	    <!-- Bootstrap core CSS -->
 	    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,29 +40,26 @@
 	    <![endif]-->
 	</head>
 	<body>
+		<form class="none" action="index.html" method="post">
+			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
+			<input type="button" name="name" value="hohoho" onClick = "obj_move()">
+		</form>
 
 		<!-- 画面上部に固定ヘッダーの設置 -->
 		    <div class="navbar navbar-default navbar-fixed-top">
 		      <div class="container">
 		        <div class="navbar-header">
-		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		          </button>
-		          <a class="navbar-brand" href="#"><i class="fa fa-gears"></i> WEBページ制作</a>
-		        </div>
-		        <div class="navbar-collapse collapse">
-		          <ul class="nav navbar-nav navbar-right">
-		            <li><a href="http://nexseed.net/"><i class="fa fa-home"></i></a>
-		            <li><a href="https://www.facebook.com/NexSeed?fref=ts"><i class="fa fa-facebook"></i></a></li>
-		            <li><a href="mailto:sample@gmail.com"><i class="fa fa-envelope"></i></a>
-		          </ul>
+		          <a class="navbar-brand" href="#" style = "position: absolute; left: 50px;"><i class="fa fa-gears"></i>Sharing Error Page</a>
+							<form class="" action="index.html" method="post">
+								<input type="text" name="search_comment" value="" style = "position: relative; top: 12px; text-align: center; height: 25px; size: 50px; color: black;">
+								<input type="submit" name="name" value="Search Errors!" style = " position: relative; top: 12px; border: 2px solid #7fffd4; background-color: green;">
+							</form>
 		        </div>
 		      </div>
 		    </div>
-		<!-- メインコンテンツ。ここにコメントを表示したり、動き（アニメーション）を与えていきます -->
 
+
+		<!-- メインコンテンツ。ここにコメントを表示したり、動き（アニメーション）を与えていきます -->
 		<div id="main_content">
 			<span>コメントはここに表示されることになっています</span>
 		</div>
@@ -103,6 +100,12 @@
 
 		<div id="reply_comment">
 			<span>hoe</span>
+			<form class="reply_form" action="index.html" method="post">
+				<dl class="">
+					<dt><input type="text" style = "width: 300px; height: 650px; color: black; position: absolute; left: 50px;" name="replyComment" value=""></dt>
+					<dt><input type="submit" name="reply_submit" value="返信します" style = "position: absolute; left: 150px; top: 700px;"></dt>
+				</dl>
+			</form>
 		</div>
 		<!-- 以下のスクリプト部分でメインコメントオブジェクトの位置を指定して表示しています。 -->
 		<script type="text/javascript">
@@ -146,10 +149,5 @@
 
 			}
 		</script>
-
-		<form class="none" action="index.html" method="post">
-			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
-			<input type="button" name="name" value="hohoho" onClick = "obj_move()">
-		</form>
 	</body>
 </html>
