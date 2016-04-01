@@ -101,8 +101,14 @@
 			</p>
 		</div>
 
+		<div id="reply_comment">
+			<span>hoe</span>
+		</div>
+		<!-- 以下のスクリプト部分でメインコメントオブジェクトの位置を指定して表示しています。 -->
 		<script type="text/javascript">
 			var pos_x,pos_y;
+			var obj_name = "obj1";
+			var obj_array = new Array("obj1");
 			function get_mainContent_position(){
 				// メインコンテンツを表示する場所を取得しています
 				var w_x = window.innerWidth;
@@ -112,7 +118,7 @@
 				// メインコンテンツの位置取得終了
 				var main_content = document.getElementById("main_content");
 				document.body.appendChild(main_content);
-				main_content.style.position = "fixed";
+				main_content.style.position = "absolute";
 				main_content.style.width = "400px";
 				main_content.style.height = "200px";
 				main_content.style.border = "3px solid #7fffd4";
@@ -120,15 +126,30 @@
 				main_content.style.left = (pos_x) + "px";
 				main_content.style.top = (pos_y) + "px";
 
-				obj_set(pos_x, pos_y);
+				var pos_rx, pos_ry;
+				pos_rx = pos_x;
+				pos_ry = pos_y + 450;
+				var reply_content = document.getElementById("reply_comment");
+				document.body.appendChild(reply_content);
+				reply_content.style.position = "absolute";
+				reply_content.style.width = "400px";
+				reply_content.style.height = "750px";
+				reply_content.style.border = "10px solid #7fffd4";
+				reply_content.style.backgroundColor = "white";
+				reply_content.style.left = (pos_rx) + "px";
+				reply_content.style.top = (pos_ry) + "px";
+				//メインコンテンツの表示を終了
+
+			  	obj_set(pos_x, pos_y);
+			//	get_obj_position(obj_array[0],1,pos_x,pos_y);
+			// 	get_obj_position(obj_name, 1, pos_x, pos_y);
+
 			}
 		</script>
 
 		<form class="none" action="index.html" method="post">
-			<input type="button" name="name" value="button_move" onClick = "onClick_button()" id = "ashamed_button"><br>
-			<input type="button" name="name" value="別のボタン" onClick="obj_move()"><br>
-			<input type="button" name="name" value="さらに別のボタん" onClick = "obj_set()"><br>
 			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
+			<input type="button" name="name" value="hohoho" onClick = "obj_move()">
 		</form>
 	</body>
 </html>
