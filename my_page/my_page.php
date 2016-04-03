@@ -1,25 +1,42 @@
 <?php
-	require("../dbconnect.php");
+	session_start();
+	//セッションの存在確認に用います。
+	//var_dump($_SESSION);
 
-	$sql = sprintf('SELECT comment_title, comment, comment_id FROM `comment` WHERE 1 ORDER BY "created" DESC LIMIT 3;');
-	$record = mysqli_query($db, $sql) or die(mysqli_error($db));
-	$tables = array();
-	while($rec = mysqli_fetch_assoc($record)){
-		$tables[] = $rec;
+	if (isset($_SESSION) && !empty($_SESSION)) {
+		require("../dbconnect.php");
+
+		$sql = sprintf('SELECT comment_title, comment, comment_id FROM `comment` WHERE 1 ORDER BY "created" DESC LIMIT 3;');
+		$record = mysqli_query($db, $sql) or die(mysqli_error($db));
+		$tables = array();
+		while($rec = mysqli_fetch_assoc($record)){
+			$tables[] = $rec;
+		}
+
+		$sql2 = sprintf('SELECT comment_title, comment, comment_id FROM `comment` WHERE 1 ORDER BY "created" DESC LIMIT 3, 3;');
+		$record = mysqli_query($db, $sql) or die(mysqli_error($db));
+		$tables2 = array();
+		while($rec = mysqli_fetch_assoc($record)){
+			$tables2[] = $rec;
+		}
+		//データの正常取得の監視に用いたテストコード共
+		// echo "<pre>";
+		// var_dump($rec);
+		// var_dump($tables);
+		// var_dump($tables2);
+		// echo "</pre>";
+	}
+	else{
+		header("Location: ../login_page/login.php");
+		exit();
 	}
 
-	$sql2 = sprintf('SELECT comment_title, comment, comment_id FROM `comment` WHERE 1 ORDER BY "created" DESC LIMIT 3, 3;');
-	$record = mysqli_query($db, $sql) or die(mysqli_error($db));
-	$tables2 = array();
-	while($rec = mysqli_fetch_assoc($record)){
-		$tables2[] = $rec;
+	if (isset($_GET) && !empty($_GET)) {
+		if (isset($_GET['comment_num']) && !empty($_GET['comment_num'])) {
+			header("Location: ../main_pages/index.php?comment_num=" . $_GET['comment_num']);
+			exit();
+		}
 	}
-	//データの正常取得の監視に用いたテストコード共
-	// echo "<pre>";
-	// var_dump($rec);
-	// var_dump($tables);
-	// var_dump($tables2);
-	// echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -61,16 +78,16 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
+            <li role="presentation" class="active"><a href="../welcome_page/welcome.php">Welcome page -></a></li>
+            <li role="presentation" class = "active"><a href="../login_page/login.php">Logout -></a></li>
+            <li role="presentation" class = "active"><a href="https://www.facebook.com/profile.php?id=100009528349094">Contact Creater-></a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Only your page!</h3>
       </div>
 
       <div class="jumbotron">
-        <h1><?php  ?></h1>
+        <h2><?php echo $_SESSION['signIn']['email']; ?>: Only your page</h2>
         <p class="lead">Go sharing error!</p>
         <p><a class="btn btn-lg btn-success" href="../main_pages/index.php" role="button">
 					<img src="button_design.bmp" width = "300px" height = "240px"></a>
@@ -84,16 +101,20 @@
         <div class="col-lg-6">
 					<?php if (isset($tables) && !empty($tables)): ?>
 						<?php foreach ($tables as $tables): ?>
-							<h4><a href="my_page.php?comment_num=<?php echo $tables['comment_id']; ?>"><?php echo $tables['comment_title']; ?></a></h4>
-		          <p><?php echo $tables['comment']; ?></p>
+							<div class="none" style = "background-color: white; border-radius: 50px; text-align: center;">
+								<h4><a href="my_page.php?comment_num=<?php echo $tables['comment_id']; ?>"><?php echo $tables['comment_title']; ?></a></h4>
+			          <p><?php echo $tables['comment']; ?></p>
+							</div>
 						<?php endforeach; ?>
 					<?php endif; ?>
 				</div>
         <div class="col-lg-6">
 					<?php if (isset($tables2) && !empty($tables2)): ?>
 						<?php foreach ($tables2 as $tables2): ?>
-							<h4> <a href="my_page.php?comment_num=<?php echo $tables['comment_id']; ?>"><?php echo $tables2['comment_title']; ?></a></h4>
-		          <p><?php echo $tables2['comment']; ?></p>
+							<div class="none" style = "background-color: white; border-radius: 50px; text-align: center;">
+								<h4><a href="my_page.php?comment_num=<?php echo $tables2['comment_id']; ?>"><?php echo $tables['comment_title']; ?></a></h4>
+			          <p><?php echo $tables2['comment']; ?></p>
+							</div>
 						<?php endforeach; ?>
 					<?php endif; ?>
         </div>

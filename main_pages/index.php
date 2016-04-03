@@ -1,5 +1,5 @@
 <?php
-	
+	session_start();
  ?>
 
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
 	    <![endif]-->
 	</head>
 	<body>
-		<form class="none" action="index.html" method="post">
+		<form class="none" action="index.php" method="post">
 			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
 			<input type="button" name="name" value="hohoho" onClick = "obj_move()">
 		</form>
@@ -54,10 +54,13 @@
 		      <div class="container">
 		        <div class="navbar-header">
 		          <a class="navbar-brand" href="#" style = "position: absolute; left: 50px;"><i class="fa fa-gears"></i>Sharing Error Page</a>
-							<form class="" action="index.html" method="post">
+							<form class="" action="index.php" method="post">
 								<input type="text" name="search_comment" value="" style = "position: relative; top: 12px; text-align: center; height: 25px; size: 50px; color: black;">
 								<input type="submit" name="name" value="Search Errors!" style = " position: relative; top: 12px; border: 2px solid #7fffd4; background-color: green;">
-								<input type="button" name="name" value="Your Home" style = "right: 60px; position: absolute; top: 12px;">
+								<?php if (isset($_SESSION) && !empty($_SESSION)): ?>
+									<a href="../my_page/my_page.php" style = "right: 60px; position: absolute; top: 12px;"><input type="button" name="name" value="Your Home"></a>
+								<?php endif; ?>
+								<!-- <input type="button" name="name" value="Your Home" style = "right: 60px; position: absolute; top: 12px;"> -->
 							</form>
 		        </div>
 		      </div>
@@ -105,7 +108,7 @@
 
 		<div id="reply_comment">
 			<span>hoe</span>
-			<form class="reply_form" action="index.html" method="post">
+			<form class="reply_form" action="index.php" method="post">
 				<dl class="">
 					<dt><input type="text" style = "width: 300px; height: 650px; color: black; position: absolute; left: 50px;" name="replyComment" value=""></dt>
 					<dt><input type="submit" name="reply_submit" value="返信します" style = "position: absolute; left: 150px; top: 700px;"></dt>
