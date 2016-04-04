@@ -14,13 +14,14 @@
       // テストようです。
       // echo "<br>";
       // echo "<pre>";
-      // var_dump($pass);
+      // var_dump($table);
       // echo "</pre>";
       if (!empty($table)) {
         if ($email == $table['email']) {
           if ($pass == $table['pass']) {
             $_SESSION['signIn']['email'] = $email;
             $_SESSION['signIn']['pass'] = $pass;
+            $_SESSION['signIn']['user_id'] = $table['user_id'];
             //テストようです
             //var_dump($_SESSION);
             header("Location: ../my_page/my_page.php");
