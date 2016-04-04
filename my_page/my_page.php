@@ -89,7 +89,7 @@
       <div class="jumbotron">
         <h2><?php echo $_SESSION['signIn']['email']; ?>: Only your page</h2>
         <p class="lead">Go sharing error!</p>
-        <p><a class="btn btn-lg btn-success" href="../main_pages/index.php" role="button">
+        <p><a class="btn btn-lg btn-success" href="../send_comment_page/send_comment.php" role="button">
 					<img src="button_design.bmp" width = "300px" height = "240px"></a>
 				</p>
       </div>
