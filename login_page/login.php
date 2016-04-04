@@ -116,10 +116,7 @@
         </div>
         <input type="submit" class = "btn btn-lg btn-primary btn-block" name="name" value="Sign in ->">
       </form>
-
     </div> <!-- /container -->
-
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
