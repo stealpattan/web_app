@@ -120,8 +120,6 @@ function comment_send(){
   $sql2 = sprintf('SELECT comment_id FROM `comment` WHERE user_id=%s AND comment="%s"', $user_id, $text);
   $record = mysqli_query($db, $sql2) or die(mysqli_error($db));
   $table = mysqli_fetch_assoc($record);
-  $_SESSION['signIn']['title'] = array();
-  $_SESSION['signIn']['text'] = array();
   $_SESSION['signIn']['comment_id'] = $table['comment_id'];
 
   header("Location: ../main_pages/index.php");
