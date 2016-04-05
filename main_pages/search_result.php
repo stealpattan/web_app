@@ -13,7 +13,13 @@
     // echo "<pre>";
     // var_dump($table);
     // echo "</pre>";
+
 	}
+
+  if (isset($_SESSION) && !empty($_SESSION)) {
+    $_SESSION['signIn']['text'] = '';
+    $_SESSION['signIn']['title'] = '';
+  }
 
  ?>
 
@@ -33,5 +39,7 @@
          </p>
        <?php endforeach; ?>
      <?php endif; ?>
+     <br>
+     <a href="index.php">Back.</a>
    </body>
  </html>
