@@ -1,5 +1,51 @@
 <?php
 	session_start();
+	require('../dbconnect.php');
+	// echo "<pre>";
+	// var_dump($_SESSION);
+	// echo "</pre>";
+	echo "<pre>";
+	var_dump($_POST);
+	echo "</pre>";
+
+	if (isset($_GET) && !empty($_GET)) {
+		if (isset($_SESSION) && !empty($_SESSION)) {
+			$_SESSION['signIn']['title'] = '';
+			$_SESSION['signIn']['text'] = '';
+		}
+		$comment_number = $_GET['comment_number'];
+
+		$sql = sprintf('SELECT * FROM `comment` WHERE `comment_id` = %s', $comment_number);
+		$record = mysqli_query($db, $sql) or die(mysqli_error($db));
+		$main_data = mysqli_fetch_assoc($record);
+		echo "<pre>";
+		var_dump($main_data);
+		echo "</pre>";
+
+		$sql2 = sprintf('SELECT * FROM `comment` WHERE `reply_id` = %s ORDER BY `created` DESC LIMIT 1, 5', $comment_number);
+		$record = mysqli_query($db, $sql2) or die(mysqli_error($db));
+		$reply_data = array();
+		while ($rec = mysqli_fetch_assoc($record)) {
+			$reply_data[] = $rec;
+		}
+		// echo "<pre>";
+		// var_dump($reply_data);
+		// echo "</pre>";
+	}
+
+	if (isset($_POST['replyComment']) && !empty($_POST['replyComment'])) {
+		echo "<pre>";
+		var_dump($_POST);
+		echo "</pre>";
+		$sql3 = sprintf('INSERT INTO `comment` (comment_title, comment, reply_id)
+										VALUES ("%s", "$s" %s)' ,
+									$main_data['comment_title'],
+									$main_data['comment'],
+									$main_data['user_id']);
+		$record = mysqli_query($db, $sql3) or die(mysqli_error($db));
+
+	}
+
  ?>
 
 <!DOCTYPE html>
@@ -44,17 +90,13 @@
 	    <![endif]-->
 	</head>
 	<body>
-		<form class="none" action="index.php" method="post">
-			<input type="button" name="name" value="hogehoge" onClick = "get_mainContent_position()">
-			<input type="button" name="name" value="hohoho" onClick = "obj_move()">
-		</form>
 
 		<!-- 画面上部に固定ヘッダーの設置 -->
 		    <div class="navbar navbar-default navbar-fixed-top">
 		      <div class="container">
 		        <div class="navbar-header">
-		          <a class="navbar-brand" href="#" style = "position: absolute; left: 50px;"><i class="fa fa-gears"></i>Sharing Error Page</a>
-							<form class="" action="index.php" method="post">
+		          <a class="navbar-brand" href="../welcome_page/welcome.php" style = "position: absolute; left: 50px;"><i class="fa fa-gears"></i>Sharing Error Page</a>
+							<form class="" action="search_result.php" method="post">
 								<input type="text" name="search_comment" value="" style = "position: relative; top: 12px; text-align: center; height: 25px; size: 50px; color: black;">
 								<input type="submit" name="name" value="Search Errors!" style = " position: relative; top: 12px; border: 2px solid #7fffd4; background-color: green;">
 								<?php if (isset($_SESSION) && !empty($_SESSION)): ?>
@@ -68,46 +110,67 @@
 
 
 		<!-- メインコンテンツ。ここにコメントを表示したり、動き（アニメーション）を与えていきます -->
-		<div id="main_content">
-			<span>コメントはここに表示されることになっています</span>
+		<div id="main_content" style="color: black;">
+			<?php if(isset($main_data) && !empty($main_data)){ ?>
+				<span><?php echo $main_data['comment_title']; ?></span>
+				<p>
+					<?php echo $main_data['comment']; ?>
+				</p>
+			<?php }else if(isset($_SESSION['signIn']['text']) && !empty($_SESSION['signIn']['text'])){ ?>
+				<?php if (isset($_SESSION['signIn']['title']) && !empty($_SESSION['signIn']['title'])): ?>
+					<span><?php echo $_SESSION['signIn']['title']; ?></span>
+				<?php endif; ?>
+				<p><?php echo $_SESSION['signIn']['text']; ?></p>
+			<?php } ?>
 		</div>
 
 		<div id="obj1">
-			<span>hogehoge</span>
+			<?php if(isset($reply_comment['0']) && !empty($reply_comment[''])){ ?>
+			<span><?php echo $reply_comment['0']['comment_title']; ?></span>
 			<p>
-				コメントハコチラニタダシクヒョウジサレルコトトナッテイマス。ゴリョウショウクダサイ
-			</p>
+				<?php echo $reply_comment['0']['comment']; ?></p>
+			<?php } ?>
 		</div>
+
 		<div id="obj2">
-			<span></span>
+			<?php if(isset($reply_comment['1']) && !empty($reply_comment[''])){ ?>
+			<span><?php echo $reply_comment['1']['comment_title']; ?></span>
 			<p>
-				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+				<?php echo $reply_comment['1']['comment']; ?>
 			</p>
+			<?php } ?>
 		</div>
 
 		<div id="obj3">
-			<span></span>
+			<?php if(isset($reply_comment['2']) && !empty($reply_comment[''])){ ?>
+			<span><?php echo $reply_comment['2']['comment_title']; ?></span>
 			<p>
-				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+				<?php echo $reply_comment['2']['comment']; ?>
 			</p>
+			<?php } ?>
 		</div>
 
 		<div id="obj4">
-			<span></span>
+			<?php if(isset($reply_comment['3']) && !empty($reply_comment[''])){ ?>
+			<span><?php echo $reply_comment['3']['comment_title']; ?></span>
 			<p>
-				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+				<?php echo $reply_comment['3']['comment']; ?>
 			</p>
+			<?php } ?>
 		</div>
 
 		<div id="obj5">
-			<span></span>
+			<?php if(isset($reply_comment['4']) && !empty($reply_comment[''])){ ?>
+			<span><?php echo $reply_comment['4']['comment_title']; ?></span>
 			<p>
-				コメントハコチラニヒョウジサレマス。ツギハ、コメントノハイッテイルコメントボックスヲウゴカセルヨウニシマショウ。
+				<?php echo $reply_comment['4']['comment']; ?>
 			</p>
+			<?php } ?>
 		</div>
 
+		<!-- 返信コメントの送信に使う部分 -->
 		<div id="reply_comment">
-			<span>hoe</span>
+			<span style = "color: black; position: relative; top: 5px; left: 50px;">Please help him...</span>
 			<form class="reply_form" action="index.php" method="post">
 				<dl class="">
 					<dt><input type="text" style = "width: 300px; height: 650px; color: black; position: absolute; left: 50px;" name="replyComment" value=""></dt>
@@ -156,6 +219,7 @@
 			// 	get_obj_position(obj_name, 1, pos_x, pos_y);
 
 			}
+			get_mainContent_position();
 		</script>
 	</body>
 </html>
