@@ -33,7 +33,7 @@
 
 	if (isset($_GET) && !empty($_GET)) {
 		if (isset($_GET['comment_num']) && !empty($_GET['comment_num'])) {
-			header("Location: ../main_pages/index.php?comment_num=" . $_GET['comment_num']);
+			header("Location: ../main_pages/index.php?comment_number=" . $_GET['comment_num']);
 			exit();
 		}
 	}
