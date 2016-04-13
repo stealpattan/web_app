@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	require('../dbconnect.php');
-	// echo "<pre>";
-	// var_dump($_SESSION);
-	// echo "</pre>";
+	echo "<pre>";
+	var_dump($_SESSION);
+	echo "</pre>";
 	echo "<pre>";
 	var_dump($_POST);
 	echo "</pre>";
@@ -31,20 +31,33 @@
 		// echo "<pre>";
 		// var_dump($reply_data);
 		// echo "</pre>";
+
+		//ゲット送信されたデータが存在している時に返信を可能にします
+		if (isset($_POST) && !empty($_POST)) {
+			echo "hogehoge";
+			if (isset($_POST['replyComment']) && !empty($_POST['replyComment'])) {
+				// header("Location: index.php");//11にはコメントが存在しているようなので、デフォルトで、ここを指定しておきます
+				echo "<br>";
+				echo "無事送信されました";
+				echo "<pre>";
+				var_dump($_POST['replyComment']);
+				echo "</pre>";
+
+				$reply_comment = $_POST['replyComment'];
+				//SQL文を発行していきます
+				if (isset($_SESSION) && !empty($_SESSION)) {
+					$user_exist = $_SESSION['signIn']['email'];
+				}
+				else{
+					$user_exist = 1;//個の場合、ログインしているユーザからのコメントではないことを示します。
+				}
+				$sql3 = sprintf('INSERT INTO `comment` (comment, reply_id, user_id, created)
+																			VALUES ("%s", %s, %s, NOW())', $reply_comment, $comment_number, $user_exist);
+				$record = mysqli_query($db, $sql3) or die(mysqli_error($db));
+			}
+		}
 	}
 
-	if (isset($_POST['replyComment']) && !empty($_POST['replyComment'])) {
-		echo "<pre>";
-		var_dump($_POST);
-		echo "</pre>";
-		$sql3 = sprintf('INSERT INTO `comment` (comment_title, comment, reply_id)
-										VALUES ("%s", "$s" %s)' ,
-									$main_data['comment_title'],
-									$main_data['comment'],
-									$main_data['user_id']);
-		$record = mysqli_query($db, $sql3) or die(mysqli_error($db));
-
-	}
 
  ?>
 
@@ -174,7 +187,7 @@
 			<form class="reply_form" action="index.php" method="post">
 				<dl class="">
 					<dt><input type="text" style = "width: 300px; height: 650px; color: black; position: absolute; left: 50px;" name="replyComment" value=""></dt>
-					<dt><input type="submit" name="reply_submit" value="返信します" style = "position: absolute; left: 150px; top: 700px;"></dt>
+					<dt><input type="submit" name="reply_submit" style = "position: absolute; left: 150px; top: 700px;"></dt>
 				</dl>
 			</form>
 		</div>

@@ -85,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><i class="fa fa-gears"></i>Log in Page!</a>
+          <a class="navbar-brand" href="../welcome_page/welcome.php"><i class="fa fa-gears"></i>Login Page!</a>
         </div>
       </div>
     </div>
