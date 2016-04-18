@@ -3,7 +3,10 @@
 
   require('../dbconnect.php');
   //dbconnection();
-
+  echo "<pre>";
+  var_dump($_POST);
+  var_dump($_SESSION);
+  echo "</pre>";
   $error['email'] = false;
   $error['password'] = false;
   $error['misMatch'] = false;
