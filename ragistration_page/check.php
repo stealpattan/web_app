@@ -86,7 +86,7 @@
          <h2 class = 'form-signin-heading'>Check Please</h2>
          <p class = "content">Your name is:<br>GEST SIR</p>
          <p class = "content">Your e-mail adress is:<br><span style = "color: orange;"><?php echo $_SESSION['signIn']['email']; ?></span></p>
-         <p class = "content">Password is not available.</p>
+         <p class = "content">Password is not appear.</p>
        </div>
        <form class="form-signin">
          <input type="hidden" name="decide_to_ragist" value="ragist!">
