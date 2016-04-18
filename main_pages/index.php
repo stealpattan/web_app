@@ -3,9 +3,11 @@
 	require('../dbconnect.php');
 	echo "<pre>";
 	var_dump($_SESSION);
+	echo "セッション";
 	echo "</pre>";
 	echo "<pre>";
 	var_dump($_POST);
+	echo "ポスト";
 	echo "</pre>";
 
 	if (isset($_GET) && !empty($_GET)) {
@@ -20,6 +22,7 @@
 		$main_data = mysqli_fetch_assoc($record);
 		echo "<pre>";
 		var_dump($main_data);
+		echo "main_dataの表示";
 		echo "</pre>";
 
 		$sql2 = sprintf('SELECT * FROM `comment` WHERE `reply_id` = %s ORDER BY `created` DESC LIMIT 1, 5', $comment_number);
@@ -34,7 +37,6 @@
 
 		//ゲット送信されたデータが存在している時に返信を可能にします
 		if (isset($_POST) && !empty($_POST)) {
-			echo "hogehoge";
 			if (isset($_POST['replyComment']) && !empty($_POST['replyComment'])) {
 				// header("Location: index.php");//11にはコメントが存在しているようなので、デフォルトで、ここを指定しておきます
 				echo "<br>";
