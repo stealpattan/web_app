@@ -53,7 +53,7 @@
               <h3 class="masthead-brand">Welcome</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="../ragistration_page/ragistration.html">Sign up</a></li>
+                  <li class="active"><a href="../ragistration_page/ragistration.php">Sign up</a></li>
                 </ul>
               </nav>
             </div>
