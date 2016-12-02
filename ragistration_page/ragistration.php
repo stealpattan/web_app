@@ -105,7 +105,7 @@
                 } ?>" required autofocus>
          <?php if($error['email'] == true){ ?>
            <h4 style = "color: red">You are not allowed empty email-address. <br>
-              Or email-addoress that you enterd is already be used. Please check it.
+              Or email-address that you enterd is already be used. Please check it.
            </h4>
          <?php } ?>
          <br>
